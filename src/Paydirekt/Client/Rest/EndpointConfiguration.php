@@ -10,7 +10,7 @@ final class EndpointConfiguration
 {
     const API_KEY = "e81d298b-60dd-4f46-9ec9-1dbc72f5b5df";
     const API_SECRET = "GJlN718sQxN1unxbLWHVlcf0FgXw2kMyfRwD0mgTRME=";
-
+    
     const ENDPOINT_SWITCH = "sandbox";
 
     const SANDBOX_CHECKOUT_ENDPOINT = "https://api.sandbox.paydirekt.de/api/checkout/v1/checkouts";
@@ -36,7 +36,7 @@ final class EndpointConfiguration
     }
 
     private static function isProduction() {
-        return "production" == self::ENDPOINT_SWITCH;
+        return "production" == getenv('PAY_DIREKT_ENV');
     }
 
     public static function getCaFile() {

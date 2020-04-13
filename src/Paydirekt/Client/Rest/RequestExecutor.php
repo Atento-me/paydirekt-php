@@ -24,6 +24,8 @@ final class RequestExecutor
     public static function executeRequest($request, $deserialize) {
         $response = curl_exec($request);
         $responseCode = curl_getinfo($request, CURLINFO_HTTP_CODE);
+        $header_size = curl_getinfo($request, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
 
         if (!self::isResponseCodeSuccessful($responseCode))
         {
@@ -43,7 +45,7 @@ final class RequestExecutor
         }
         return $response;
     }
-    
+
     private static function isResponseCodeSuccessful($returnCode)
     {
         return $returnCode >= 200 && $returnCode < 300;
