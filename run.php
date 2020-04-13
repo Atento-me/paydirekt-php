@@ -29,8 +29,6 @@ class PayDirekt
       $apiKey = getenv('PAY_DIREKT_API_KEY') ?: "e81d298b-60dd-4f46-9ec9-1dbc72f5b5df";
       // const API_SECRET = "GJlN718sQxN1unxbLWHVlcf0FgXw2kMyfRwD0mgTRME=";
       $secretKey = getenv('PAY_DIREKT_SECRET_KEY') ?: "GJlN718sQxN1unxbLWHVlcf0FgXw2kMyfRwD0mgTRME=";
-      echo "apikey: ", $apiKey;      
-      echo "secret key: ", $secretKey; 
       $securityClient = new SecurityClient(EndpointConfiguration::getTokenObtainEndpoint(),
         $apiKey,
         $secretKey,
@@ -64,6 +62,7 @@ class PayDirekt
 
 $pay_direkt = new PayDirekt();
 $pay_direkt->setUp();
+
 if ($argv[1] == 'post') {
     $checkoutRequest = stream_get_contents(fopen("php://stdin", "r")); # DK: that's how you do it: cat in.json | x.php
     $ret = $pay_direkt->directSaleCheckout($checkoutRequest);
