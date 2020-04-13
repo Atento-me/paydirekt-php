@@ -69,6 +69,8 @@ if ($argv[1] == 'post') {
     echo json_encode($ret, JSON_PRETTY_PRINT);
 } else if ($argv[1] == 'get') {
     echo json_encode($pay_direkt->getCheckout($argv[2]), JSON_PRETTY_PRINT);
+} else if ($argv[1] == 'base') {
+    echo EndpointConfiguration::getCheckoutEndpoint();
 }
 
 
